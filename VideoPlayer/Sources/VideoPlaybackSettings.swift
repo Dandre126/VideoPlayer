@@ -1,6 +1,6 @@
 //
 // Created by Nominalista on 23.01.2018.
-// Copyright (c) 2018 Yestars. All rights reserved.
+// Copyright (c) 2018 Nominalista. All rights reserved.
 //
 
 import Foundation
