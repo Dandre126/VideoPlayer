@@ -1,6 +1,6 @@
 # VideoPlayer
 
-VideoPlayer is built to facilitate video playback..
+VideoPlayer is built to facilitate video playback.
 
 # Installation
 
