@@ -1,8 +1,8 @@
 Pod::Spec.new do |s|
 
 s.name             = 'VideoPlayer'
-s.version          = '0.1.0'
-s.summary          = 'Wraps AVPlayer.'
+s.version          = '0.2.0'
+s.summary          = 'VideoPlayer is built to facilitate video playback.'
 
 s.homepage         = 'https://github.com/Nominalista/VideoPlayer'
 s.license          = { :type => 'MIT', :file => 'LICENSE' }
