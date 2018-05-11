@@ -14,4 +14,6 @@ s.source_files = 'VideoPlayer/**/*'
 s.dependency "RxSwift",  '~> 4.1.2'
 s.dependency "RxCocoa",  '~> 4.1.2'
 
+s.swift_version = '4.1'
+
 end
