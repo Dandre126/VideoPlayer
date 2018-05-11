@@ -9,21 +9,22 @@ import Foundation
 import RxCocoa
 import RxSwift
 
-class VideoPlayer: NSObject {
+public class VideoPlayer: NSObject {
     
-    enum Status {
+    public enum Status {
         case stopped
         case loading
         case playing
     }
     
-    let player = AVPlayer()
-    let status = BehaviorRelay(value: Status.stopped)
+    public let player = AVPlayer()
+    public let status = BehaviorRelay(value: Status.stopped)
+    public let isMuted = BehaviorRelay(value: true)
     
     private let notificationCenter: NotificationCenter
     private let disposeBag = DisposeBag()
     
-    init(notificationCenter: NotificationCenter) {
+    public init(notificationCenter: NotificationCenter) {
         self.notificationCenter = notificationCenter
         super.init()
         setupPlayer()
@@ -59,13 +60,13 @@ class VideoPlayer: NSObject {
     
     // Current item
     
-    func set(currentItem item: VideoPlayerItem?) {
+    public func set(currentItem item: VideoPlayerItem?) {
         player.replaceCurrentItem(with: item)
     }
     
     // Playback
     
-    func play() {
+    public func play() {
         guard let currentItem = player.currentItem as? VideoPlayerItem else {
             print("No item to play.")
             return
@@ -84,7 +85,7 @@ class VideoPlayer: NSObject {
         item.addObserver(self, forKeyPath: .playbackLikelyToKeepUp, options: NSKeyValueObservingOptions(), context: nil)
     }
     
-    func stop() {
+    public func stop() {
         if let currentItem = player.currentItem {
             removeObservers(from: currentItem)
         }
@@ -96,8 +97,13 @@ class VideoPlayer: NSObject {
         item.removeObserver(self, forKeyPath: .status)
         item.removeObserver(self, forKeyPath: .playbackLikelyToKeepUp)
     }
+
+    public func set(isMuted: Bool) {
+        self.player.isMuted = isMuted
+        self.isMuted.accept(isMuted)
+    }
     
-    override func observeValue(forKeyPath keyPath: String?,
+    public override func observeValue(forKeyPath keyPath: String?,
                                of object: Any?,
                                change: [NSKeyValueChangeKey: Any]?,
                                context: UnsafeMutableRawPointer?) {
